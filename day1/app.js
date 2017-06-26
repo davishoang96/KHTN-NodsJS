@@ -26,6 +26,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+
 app.use(bodyParser.urlencoded({extended: true}));
 // app.use(bodyParser.json());
 
@@ -38,14 +39,16 @@ app.get('/form', function(req, res){
     res.sendFile(__dirname + '/form.html');
 });
 
-app.post('/form', function(req, res, next){
+app.post('/form', function(req, res){
     var getNumber = req.body.number1*1;
     
     for(i = 1; i<= 10; i++){
         result = getNumber * i;
+  
         res.write(getNumber + ' x ' + i + ' = ' + result + ' \n');
     }
-
+    // pass a local variable to the view
+    
     res.end();
   
 });
